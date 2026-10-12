@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conectando ao TikTok — Arquivo S/A</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="favicon.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top"><img src="logo.png" alt="Logotipo do Arquivo S/A"><div><div class="name">ARQUIVO S/A</div><div class="tag">Conexão com o TikTok</div></div></header>
+  <h1>Conectando…</h1>
+  <p id="msg">Voltando para a Fábrica de Shorts no seu computador.</p>
+  <p class="card" style="font-size:14px">Esta página só repassa a autorização do TikTok para o aplicativo de publicação que roda no computador do
+     responsável pelo canal (endereço local 127.0.0.1). Nenhum dado é guardado aqui. / This page only forwards the TikTok authorization
+     code to the publishing app running on the channel owner's own computer. No data is stored here.</p>
+</div>
+<script>
+  // Repassa ?code=&state= (ou o erro) para a Fábrica de Shorts local.
+  const q = location.search || "";
+  const target = "http://127.0.0.1:8891/api/shorts/tiktok-callback" + q;
+  if (/[?&](code|error)=/.test(q)) {
+    location.replace(target);
+  } else {
+    document.getElementById("msg").textContent = "Nenhuma autorização recebida. Inicie a conexão pela Fábrica de Shorts.";
+  }
+</script>
+</body>
+</html>
